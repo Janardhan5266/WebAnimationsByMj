@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solar system</title>
+      <style id="scale-style"></style>
+<script>
+  if (window !== window.parent) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+
+    if (width < 400) scale = 0.2;
+    else if (width < 600) scale = 0.5;
+    else if (width < 800) scale = 0.6;
+    else if (width < 1000) scale = 0.8;
+
+    document.getElementById('scale-style').innerHTML = `
+
+
+      body {
+        transform: scale(${scale});
+        width: ${width}px;
+        height: ${height}px;
+        margin: 0;
+        overflow: hidden;
+      }
+    `;
+  }
+</script>
+
+    <style>
+        body {
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box5{
+            width: 520px;
+            height: 520px;
+            background: conic-gradient(from 320deg,transparent 70%,skyblue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+            
+            
+        }
+
+        .box4 {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: black;
+
+            
+            
+            position: relative;
+            z-index: 0;
+        }
+
+        .box4::before {
+            content: '';
+            width: 20%;
+            height: 20%;
+            border-radius: 50%;
+            background-color:yellow;
+            left: 40%;
+            top: 40%;
+            z-index: -1;
+            position: absolute;
+            filter: blur(40px);
+        }
+
+        .box4::after {
+            content: '';
+            width: 20%;
+            height: 20%;
+            background-color: yellow;
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border-radius: 50%;
+
+
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(-360deg);
+            }
+
+        }
+
+        .box3 {
+            width: 180px;
+            height: 180px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+            background:conic-gradient(from 320deg,transparent 70%,skyblue);
+            border-radius: 50%;
+            
+            z-index: 1;
+            animation: rotate1 3s linear infinite;
+
+        }
+        .box3::before{
+            content: '';
+            width: 50%;
+            height: 50%;
+            background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+        }
+        @keyframes rotate1{
+            0%{
+                transform: rotate(-360deg);
+            }
+        }
+        .box2{
+            width: 170px;
+            height: 170px;
+            background-color: black;
+            border-radius: 50%;
+           
+        }
+        .box1{
+            width: 30px;
+            height: 30px;
+            background-color: green;
+            border-radius: 50%;
+            transform: translateX(30%) translateY(30%);
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box5">
+        <div class="box4">
+            <div class="box3">
+                <div class="box2">
+                  <div class="box1"></div>
+                </div>
+                </did>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

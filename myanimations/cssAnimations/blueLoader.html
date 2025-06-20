@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circle loader</title>
+       <style id="scale-style"></style>
+<script>
+  if (window !== window.parent) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+
+    if (width < 400) scale = 1;
+    else if (width < 600) scale = 0.5;
+    else if (width < 800) scale = 0.6;
+    else if (width < 1000) scale = 0.8;
+
+    document.getElementById('scale-style').innerHTML = `
+
+    *{
+       background-color: rgba(100, 100, 100, 0.171)}
+      body {
+        transform: scale(${scale});
+        width: ${width}px;
+        height: ${height}px;
+        margin: 0;
+        overflow: hidden;
+      }
+    `;
+  }
+</script>
+
+    <style>
+       :root{
+        --colors:black;
+      }
+    
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            height: 100vh;
+            background-color:var(--colors);
+        
+        }
+       
+        
+        
+        
+        button{
+            position: fixed;
+            transform: translateX(40vw) translateY(-45vh) scale(120%);  
+        }
+       
+       
+      
+        .circle{
+            width: 80px;
+            height: 80px;
+            background-color: transparent;
+            position: absolute;
+            
+            animation: orbit 3s infinite ;
+        }
+        .circle::before{
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: aqua;
+            position: absolute;
+            z-index: 1;
+        }
+        @keyframes orbit{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(-360deg);
+            }
+        }
+        .c2{
+            animation-delay: 0.2s;
+        }
+        .c3{
+            animation-delay: 0.4s;
+        }
+        .c4{
+            animation-delay: 0.6s;
+        }
+        .c5{
+            animation-delay: 0.8s;
+        }
+        .c6{
+            animation-delay: 1s;
+        }
+        .c7{
+            animation-delay: 1.2s;
+        }
+        .c8{
+            animation-delay: 1.4s;
+        }
+        .c9{
+            animation-delay: 1.6s;
+        }
+        .c10{
+            animation-delay: 1.8s;
+        }
+       
+        
+        </style>
+</head>
+<body>
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
+    <div class="circle c4"></div>
+    <div class="circle c5"></div>
+    <div class="circle c6"></div>
+    <div class="circle c7"></div>
+    <div class="circle c8"></div>
+    <div class="circle c9"></div>
+    <div class="circle c10"></div>
+    <button><a href="#">theme</a></button>
+</body> 
+</html>

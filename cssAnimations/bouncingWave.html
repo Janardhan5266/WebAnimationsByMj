@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circle</title>
+      <style id="scale-style"></style>
+<script>
+  if (window !== window.parent) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+
+    if (width < 400) scale = 1;
+    else if (width < 600) scale = 0.5;
+    else if (width < 800) scale = 0.6;
+    else if (width < 1000) scale = 0.8;
+
+    document.getElementById('scale-style').innerHTML = `
+
+    *{
+       background-color: rgba(100, 100, 100, 0.171)}
+      body {
+        transform: scale(${scale});
+        width: ${width}px;
+        height: ${height}px;
+        margin: 0;
+        overflow: hidden;
+      }
+    `;
+  }
+</script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+
+        }
+        .card{
+            position: absolute;
+            top: 20%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        .circle{
+            position: absolute;
+            background: transparent;
+            width: calc(var(--i)*2.5vmin); 
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 3px solid rgb(0, 255, 238);
+            transform-style: preserve-3d;
+            transform: rotateX(70deg) translateZ(50px);
+            animation: animate 3s ease-in-out calc(var(--i)*0.08s) infinite; 
+        }
+       
+@keyframes animate{
+    0%,
+    100%{
+        transform: rotateX(70deg) translateZ(50px) translateY(0);
+        filter: hue-rotate(0);
+    }
+    50%{
+        transform: rotateX(70deg) translateZ(50px) translateY(-50vmin);
+        filter: hue-rotate(360deg);
+    }
+}
+
+    </style>
+</head>
+<body></body>
+    <div class="card">
+      <div class="circle" style="--i:0"></div>
+      <div class="circle" style="--i:1"></div>
+      <div class="circle" style="--i:2"></div>
+      <div class="circle" style="--i:3"></div>
+      <div class="circle" style="--i:4"></div>
+      <div class="circle" style="--i:5"></div>
+      <div class="circle" style="--i:6"></div>
+      <div class="circle" style="--i:7"></div>
+      <div class="circle" style="--i:8"></div>
+      <div class="circle" style="--i:9"></div>
+      <div class="circle" style="--i:10"></div>
+      <div class="circle" style="--i:11"></div>
+      <div class="circle" style="--i:12"></div>
+      <div class="circle" style="--i:13"></div>
+      <div class="circle" style="--i:14"></div>
+      <div class="circle" style="--i:15"></div>
+      <div class="circle" style="--i:16"></div>
+      <div class="circle" style="--i:17"></div>
+      <div class="circle" style="--i:18"></div>
+      <div class="circle" style="--i:19"></div>
+      <div class="circle" style="--i:20"></div>
+      
+    </div>
+</body>
+</html>

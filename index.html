@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showcase</title>
+    <style>
+        :root {
+            --color: rgb(255, 255, 255);
+            --color1: white;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            position: fixed;
+            border: 2px solid black;
+            background-color: black;
+            z-index: -1000;
+
+        }
+
+        .container {
+            padding: 10px;
+        }
+
+        h1 {
+            -webkit-text-stroke: 0.2px;
+            -webkit-text-stroke-color: rgb(241, 255, 88);
+            font-style: italic;
+            font-size: 2.2rem;
+        }
+
+        .animations {
+            padding: 10px;
+            gap: 10px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid;
+            border-radius: 16px;
+            color: azure;
+        }
+
+        .box {
+            margin: 10px;
+            width: 90vw;
+            height: 50vh;
+            border: 2px solid;
+            border-radius: 16px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .cards {
+            width: 85vw;
+            padding: 10px;
+            margin: 10px;
+            gap: 20px;
+            border: 2px solid rgba(138, 138, 138, 0.447);
+            border-color: var(--color1);
+            border-radius: 8px;
+            overflow-x: auto;
+            overflow-y: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+
+        }
+
+
+        h2 {
+            padding: 8px;
+            border: 6px double rgba(123, 123, 123, 0.26);
+
+            border-radius: 8px;
+            font-variant: small-caps;
+
+            background: linear-gradient(45deg, red, violet, indigo, blue, green, yellow, orange, red);
+            background-size: 800%;
+            z-index: -1;
+            border-radius: 10px;
+            animation: glow 20s linear infinite;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+
+
+
+        @keyframes glow {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 900% 0;
+            }
+        }
+
+
+
+        .animationCards {
+            display: inline-block;
+            margin: 12px;
+            border-radius: 8px;
+            width: 160px;
+            height: 220px;
+            border: 2px solid rgba(185, 184, 184, 0.278);
+            transition: all 0.09s ease-in-out;
+        }
+
+        iframe {
+
+            display: inline-block;
+            border-radius: inherit;
+            width: 99%;
+            height: 90%;
+            border: 2px solid transparent;
+            transition: all 0.09s ease-in-out;
+            overflow: hidden;
+
+            scrollbar-width: none;
+        }
+
+        h4 {
+            text-align: center;
+            box-sizing: border-box;
+            background-color: rgba(100, 100, 100, 0.171);
+            text-transform: capitalize;
+            cursor: pointer;
+
+        }
+
+        .animationCards:hover {
+            transform: scale(110%);
+            border-color: var(--color);
+        }
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <div class="container flex">
+        <h1>WELLCOME TO WEB ANIMATIONS</h1>
+        <div class="animations flex" id="animations">
+
+            <div class="canvasAnimations box flex" id="canvasAnimations">
+                <h2>canvas animations</h2>
+                <div class="cards " id="canvasContainer">
+                    
+                </div>
+            </div>
+            <div class="cssAnimations box flex" id="cssAnimations">
+                <h2>css animations</h2>
+                <div class="cards" id="cssContainer">
+                    
+                </div>
+            </div>
+            <div class="otherAnimations box flex" id="otherAnimations">
+                <h2>other animations</h2>
+                <div class="cards" id="otherContainer">
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const canvasAnimationsNames = document.getElementById('canvasContainer');
+        const cssAnimationsNames = document.getElementById('cssContainer');
+        const otherAnimationsNames = document.getElementById('otherContainer');
+        let canvasAnimationsArray = ['box','cracker','galaxy','lightsaver','spiral','tunnel','tunnelbox'];
+         let cssAnimationsArray = ['blueLoader','bouncingWave','greenBox','greenCube','hoverBotton','hoverBox','photoCard','photoCards','pinkCube','roatatingBoxes','smoge','solarSystem','solarSystem1','solarSystem2'];
+          let otherAnimationsArray = ['blackLoader','colorLoader','fan','loader','oscilateLoader'];
+      
+        for(let i = 0;i<canvasAnimationsArray.length;i++){
+
+            let div = document.createElement('div');
+            div.className = 'animationCards';
+            div.innerHTML = `<iframe src="canvasAnimations/${canvasAnimationsArray[i]}.html" frameborder="2"></iframe>
+                        <h4 onclick="window.location.href='canvasAnimations/${canvasAnimationsArray[i]}.html'">${canvasAnimationsArray[i]}</h4>`;
+          canvasAnimationsNames.appendChild(div);
+        };
+
+         for(let i = 0;i<cssAnimationsArray.length;i++){
+
+            let div = document.createElement('div');
+            div.className = 'animationCards';
+            div.innerHTML = `<iframe src="cssAnimations/${cssAnimationsArray[i]}.html" frameborder="2"></iframe>
+                        <h4 onclick="window.location.href='cssAnimations/${cssAnimationsArray[i]}.html'">${cssAnimationsArray[i]}</h4>`;
+          cssAnimationsNames.appendChild(div);
+        };
+         for(let i = 0;i<otherAnimationsArray.length;i++){
+
+            let div = document.createElement('div');
+            div.className = 'animationCards';
+            div.innerHTML = `<iframe src="otherAnimations/${otherAnimationsArray[i]}.html" frameborder="2"></iframe>
+                        <h4 onclick="window.location.href='otherAnimations/${otherAnimationsArray[i]}.html'">${otherAnimationsArray[i]}</h4>`;
+          otherAnimationsNames.appendChild(div);
+        };
+
+        const canvas = document.querySelector('canvas');
+        const c = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        //canvas window resize
+        addEventListener('resize', function () {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        })
+
+        //changing color dynamically
+        const header = document.querySelector('h1');
+        const animationsbox = document.getElementById('animations');
+
+        let hue = 0;
+        function colorchangerhue() {
+            setTimeout(colorchangerhue, 1);
+            let color = `hsl(${hue},50%,50%)`;
+            let color1 = `hsl(${hue + 180},50%,50%)`;
+            let color2 = `hsl(${hue + 240},50%,50%)`;
+            header.style.color = color;
+            document.documentElement.style.setProperty('--color1', color1);
+            animationsbox.style.borderColor = color2;
+            hue += 1;
+        }
+        colorchangerhue();
+
+        const canvasAnimations = document.getElementById('canvasAnimations');
+        const cssAnimations = document.getElementById('cssAnimations');
+        const otherAnimations = document.getElementById('otherAnimations');
+        const cards = document.getElementsByClassName('cards');
+
+
+        let time = 1000;
+        function colorchangerrandom() {
+
+
+            setTimeout(colorchangerrandom, time);
+            let color1 = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.8)`;
+            let color2 = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.8)`;
+            let color3 = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.8)`;
+            let color4 = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.8)`;
+            let color5 = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+            document.documentElement.style.setProperty('--color', color5)
+
+            canvasAnimations.style.borderColor = color2;
+            cssAnimations.style.borderColor = color3;
+            otherAnimations.style.borderColor = color4;
+
+
+
+
+
+
+
+        }
+        colorchangerrandom();
+
+
+
+
+
+
+
+        //wave properties
+        const wave = {
+            y: 25,
+            length: 0.01,
+            amplitude: 10,
+            frequency: 0.09
+        }
+        let fix = 0.09;
+        let h = 180;
+        let waveposition = 0;
+        //firecraker properties
+        let gereratecrackertime = 2500;
+        let particlecount = 200;
+        let particleradius = 1;
+        let universalx;
+
+
+
+        class Particle {
+            constructor(x, y, radius, color, dx, dy, blastpoint) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.blastpoint = blastpoint;
+                this.radius = radius;
+                this.color = color;
+                this.speed = 20;
+                this.gravity = 0.0007;
+                this.friction = 0.93;
+                this.alpha = 1;
+                this.flight = 1;
+                this.blastpointspeed = 15;
+
+
+            }
+
+            draw() {
+                c.save();
+                c.globalAlpha = this.alpha;
+                c.beginPath();
+                c.fillStyle = this.color;
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fill();
+                c.closePath();
+                c.restore();
+
+            }
+
+
+            blast() {
+
+                this.draw();
+
+                this.x += this.dx * this.speed;
+                this.y += this.dy * this.speed;
+                this.dx *= this.friction;
+                this.dy *= this.friction;
+                this.dy += this.gravity;
+                this.alpha -= 0.012
+
+            }
+            update() {
+                this.draw();
+                this.y -= this.blastpointspeed;
+                this.blastpointspeed *= 0.97;
+
+            }
+        }
+
+
+        let particles = [];
+
+
+        function animate() {
+            requestAnimationFrame(animate);
+            c.beginPath();
+            c.fillStyle = 'rgba(0,0,0,0.05)'
+            c.fillRect(0, 0, canvas.width, canvas.height);
+
+            c.beginPath();
+            c.strokeStyle = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`
+            c.strokeStyle = `hsl(${h},50%,50%)`;
+            c.moveTo(0, 100);
+            for (let i = 0; i < canvas.width; i++) {
+                c.lineTo(i, wave.y + Math.sin(i * wave.length + waveposition) * wave.amplitude)
+            }
+            c.stroke();
+            waveposition -= wave.frequency;
+            h += 1;
+
+            // particles.forEach((particle, i) => {
+            //     if (particle.alpha < 0) {
+            //         particles.splice(i, 1);
+            //     }
+            //     else {
+            //         if(particle.blastpoint < particle.y){
+            //             particle.update();
+            //         }
+            //         else{
+
+            //         particle.blast();
+            //         }
+            //     }
+            // });
+
+            for (let i = 0; i < particles.length; i++) {
+
+                if (particles[i].y > particles[i].blastpoint && particles[i].x == universalx) {
+                    particles[i].update();
+                }
+                else {
+                    particles[i].blast();
+                    if (particles[i].alpha <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+
+            }
+
+        }
+
+        animate();
+
+
+        function gereratecracker() {
+            setTimeout(gereratecracker, gereratecrackertime);
+
+            let blastpoint = Math.floor(Math.random() * canvas.height);
+            let x = 30 + (canvas.width - 30) * Math.random() - 30;
+            universalx = x;
+            let y = canvas.height;
+            for (let i = 0; i < particlecount; i++) {
+
+
+                let radius = 2;
+                let color = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+                let dx = Math.cos(Math.PI * 2 * i / particlecount) * Math.random();
+                let dy = Math.sin(Math.PI * 2 * i / particlecount) * Math.random();
+
+                particles.push(new Particle(x, y, particleradius, color, dx, dy, blastpoint));
+
+            }
+
+        }
+
+
+        for (let i = 0; i < particlecount; i++) {
+            let x = canvas.width / 2;
+            let y = canvas.height;
+
+            let color = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+            let dx = Math.cos(Math.PI * 2 * i / particlecount) * Math.random();
+            let dy = Math.sin(Math.PI * 2 * i / particlecount) * Math.random();
+
+            particles.push(new Particle(x, y, particleradius, color, dx, dy, canvas.height / 2));
+
+        }
+
+        gereratecracker();
+        // setTimeout( gereratecracker(),100);
+
+
+
+    </script>
+</body>
+
+</html>

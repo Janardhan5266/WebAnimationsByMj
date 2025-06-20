@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>light saver</title>
+     <style id="scale-style"></style>
+<script>
+  if (window !== window.parent) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+
+    if (width < 400) scale = 1;
+    else if (width < 600) scale = 0.5;
+    else if (width < 800) scale = 0.6;
+    else if (width < 1000) scale = 0.8;
+
+    document.getElementById('scale-style').innerHTML = `
+
+    *{
+       background-color: rgba(100, 100, 100, 0.171)}
+      body {
+        transform: scale(${scale});
+        width: ${width}px;
+        height: ${height}px;
+        margin: 0;
+        overflow: hidden;
+      }
+    `;
+  }
+</script>
+</script>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+        canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas></canvas>
+    <script>
+        const canvas = document.querySelector('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const c = canvas.getContext('2d');
+
+        let mouse = {
+            x: canvas.width / 2,
+            y: canvas.height / 2
+        }
+
+        function range(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+
+        class Particle {
+            constructor(i,x, y, radius, color) {
+                this.i = i;
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.lastangle = angle;
+                this.center = {
+                    x:canvas.width/2,
+                    y:canvas.height/2
+                };
+            
+                this.radians = 0;
+                
+            }
+            draw() {
+                c.beginPath();
+                c.fillStyle = this.color;
+                c.arc(this.x,this.y,this.radius,0,Math.PI*2,false);
+                c.fill();
+               
+            }
+            update() {
+             this.draw();
+             
+            //  this.lastangle = angle + this.lastangle;
+                // this.lastangle += 0.009*(angle - this.lastangle)
+                // this.lastangle = angle + this.i;
+
+                 this.lastangle += (angle - this.lastangle);
+
+               
+                  this.x = this.center.x + this.i*Math.cos(this.lastangle);
+                  this.y = this.center.y + this.i*Math.sin(this.lastangle); 
+                
+             
+            this.radians += 0.009;
+            }
+
+        }
+
+           let angle = 0;
+        addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX - canvas.width/2;
+            mouse.y = e.clientY - canvas.height/2;
+
+            angle = Math.atan2(mouse.y,mouse.x);
+
+           
+            
+
+            
+        });
+
+        addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            mouse.x = canvas.width/2;
+            mouse,y = canvas.height/2;
+
+        });
+
+        let particles;
+        function init() {
+            particles = [];
+        }
+
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            c.fillStyle = `rgba(0,0,0,0.05)`;
+            c.fillRect(0, 0, innerWidth, innerHeight);
+
+
+
+            particles.forEach(particle => {
+                particle.update();
+            });
+
+
+
+
+
+
+        }
+        init();
+        animate();
+
+
+
+        let quantity = 200;
+             let j = 0;
+             
+        for (let i = 0; i < quantity; i++) {
+            
+            let radius = 5;
+            let x = canvas.width/2 - i*Math.cos(Math.PI);
+            let y = canvas.height/2 + i*Math.sin(Math.PI);
+
+            
+            let color = `hsl(${j},50%,50%)`;
+            particles.push(new Particle(i,x, y, radius, color));
+            j += 360/quantity;
+           
+        
+        }
+
+
+
+    </script>
+</body>
+
+</html>

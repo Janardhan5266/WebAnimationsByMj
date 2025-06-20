@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loader</title>
+    <style id="scale-style"></style>
+<script>
+  if (window !== window.parent) {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    let scale = 1;
+
+    if (width < 400) scale = 1;
+    else if (width < 600) scale = 0.5;
+    else if (width < 800) scale = 0.6;
+    else if (width < 1000) scale = 0.8;
+
+    document.getElementById('scale-style').innerHTML = `
+
+    *{
+       background-color: rgba(100, 100, 100, 0.171)}
+      body {
+        transform: scale(${scale});
+        width: ${width}px;
+        height: ${height}px;
+        margin: 0;
+        overflow: hidden;
+      }
+    `;
+  }
+</script>
+
+    <style>
+        :root{
+            --bg:rgb(0, 0, 0);
+        }
+body{
+    height: 100vh;
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+@property --angle{
+    syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+}
+.bubble{
+    width: 25px;
+    height: 25px;
+    background: conic-gradient(from var(--angle),blue,#ff00bf,yellow,blue);
+    border-radius: 50%;
+    animation: rotate 1s linear infinite, bounce 2s infinite;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bubble::before{
+    content: '';
+    position: absolute;
+    width: calc(100% - 18px);
+    height: calc(100% - 18px);
+    background-color: transparent;
+    border: 8px solid var(--bg);
+    border-radius : 50%;
+}
+
+.b2{
+  animation-delay: 0.2s;  
+}
+.b3{
+    animation-delay: 0.4s;  
+}
+.b4{
+    animation-delay: 0.6s;  
+}
+.b5{
+    animation-delay: 0.8s;  
+}
+@keyframes rotate{
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
+@keyframes bounce{
+0%,100%{
+    transform: translateY(-40px);
+}
+50%{
+    transform: translateY(40px);
+}
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
+    <div class="bubble b5"></div>
+
+    <script>
+        
+        let bgcolor = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+        document.body.addEventListener('click',function(){
+            if(bgcolor === 'white'){
+                document.documentElement.style.setProperty('--bg','black');
+                bgcolor = 'black';
+            }
+            else{
+                document.documentElement.style.setProperty('--bg','white');
+                bgcolor = 'white';
+            }
+        });
+        
+        
+        
+        
+    </script>
+</body> 
+</html>
